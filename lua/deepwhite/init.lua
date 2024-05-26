@@ -18,6 +18,7 @@ function M.load()
 
 	local colors = require("deepwhite.colors").get_colors(config.options)
 	local groups = require("deepwhite.scheme").get_groups(colors)
+	groups = vim.tbl_deep_extend('force', groups, config.options.color_overrides or {})
 
 	for name, val in pairs(groups) do
 		vim.api.nvim_set_hl(0, name, val)
